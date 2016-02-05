@@ -1,26 +1,53 @@
-# Ember-stringify
+# ember-stringify
 
-This README outlines the details of collaborating on this Ember addon.
+Convert a whole folder into a map of strings. This is great for managing markdown files for your Ember app.
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+`ember install ember-stringify`
 
-## Running
+## Usage
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+Imagine you have a file structure like this:
 
-## Running Tests
+```
+.
+├── app
+├── tests
+└── markdown/
+    ├── section-one/
+    │   ├── one.md
+    │   └── two.md
+    ├── section-two/
+    │   ├── foo.md
+    │   └── bar.md
+    ├── file1.js
+    └── file2.js
+```
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+In your `ember-cli-build.js` file, you could then do:
 
-## Building
+```js
+module.exports = function(defaults) {
+  var app = new EmberApp(defaults, {
+    stringifyPath: 'markdown'
+  });
+});
+```
 
-* `ember build`
+And then in any project file, you could:
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+```js
+import Ember from 'ember';
+import strings from 'my-app/ember-stringify';
+
+export default Ember.Controller({
+  text: Ember.computed({
+    return strings['section-one']['one.md'];
+  }),
+
+  stringifiedJavascript: Ember.computed({
+    return strings['file1.js'];
+  })
+});
+```
