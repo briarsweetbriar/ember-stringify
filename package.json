@@ -1,6 +1,6 @@
 {
   "name": "ember-stringify",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An Ember addon that converts files trees into a map of strings.",
   "directories": {
     "doc": "doc",

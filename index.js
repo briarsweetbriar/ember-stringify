@@ -12,11 +12,11 @@ module.exports = {
     return this.app.options.stringifyPath || 'stringify';
   },
 
-  treeForApp: function(tree) {
+  treeForApp: function() {
     var files = flatiron(this.stringifyPath(), {
       outputFile: 'ember-stringify.js'
     });
 
-    return mergeTrees([tree, files]);
+    return mergeTrees([files]);
   }
 };
